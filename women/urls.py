@@ -4,7 +4,7 @@ from . import views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'women', views.WomenViewSet)
+router.register(r'women', views.WomenViewSet, basename='women')
 
 for url in router.urls:
     print(url)

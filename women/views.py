@@ -7,8 +7,16 @@ from .serializer import WomenSerializer
 
 
 class WomenViewSet(viewsets.ModelViewSet):
-    queryset = Women.objects.all()
+    # queryset = Women.objects.all()
     serializer_class = WomenSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+
+        if not pk:
+            return Women.objects.all()[:3]
+
+        return Women.objects.filter(pk=pk)
 
     @action(methods=['get'], detail=True)
     def category(self, request, pk):
