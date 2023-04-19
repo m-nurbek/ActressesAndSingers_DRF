@@ -10,13 +10,7 @@ class WomenAPIList(generics.ListCreateAPIView):
     serializer_class = WomenSerializer
 
 
-# realizes the method PUT
-class WomenAPIUpdate(generics.UpdateAPIView):
-    queryset = Women.objects.all()
-    serializer_class = WomenSerializer
-
-
-# realizes the method DELETE
-class WomenAPIDelete(generics.DestroyAPIView):
+# GET, PUT, DELETE
+class WomenAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
