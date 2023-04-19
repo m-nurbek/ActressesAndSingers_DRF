@@ -3,9 +3,17 @@ from .models import Women
 
 
 class WomenSerializer(serializers.ModelSerializer):
+    is_published = serializers.BooleanField(default=True)
+    cat_id = serializers.IntegerField()
+
     class Meta:
         model = Women
-        fields = '__all__'
+        fields = ['title',
+                  'content',
+                  'time_create',
+                  'time_update',
+                  'is_published',
+                  'cat_id']
         read_only_fields = ['time_create', 'time_update']
 
     def create(self, validated_data):
