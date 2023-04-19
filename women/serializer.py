@@ -7,16 +7,17 @@ from .models import Women
 
 
 class WomenSerializer(serializers.ModelSerializer):
-    title = models.CharField(max_length=255)
-    content = models.CharField()
-    time_create = models.DateTimeField(read_only=True)
-    time_update = models.DateTimeField(read_only=True)
-    is_published = models.BooleanField(default=True)
-    cat_id = serializers.IntegerField()
+    # title = models.CharField(max_length=255)
+    # content = models.CharField()
+    # time_create = models.DateTimeField(read_only=True)
+    # time_update = models.DateTimeField(read_only=True)
+    # is_published = models.BooleanField(default=True)
+    # cat_id = serializers.IntegerField()
 
     class Meta:
         model = Women
         fields = '__all__'
+        read_only_fields = ['time_create', 'time_update']
 
 
 # def encode():
