@@ -16,3 +16,19 @@ class WomenAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'post': serializer.data})
+
+    def put(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+        if not pk:
+            return Response({"error": "Method PUT not allowed"})
+
+        try:
+            instance = Women.objects.get(pk=pk)
+        except:
+            return Response({"error": "Method PUT not allowed"})
+
+        serializer = WomenSerializer(data=request.data, instance=instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"post": serializer.data})
+
