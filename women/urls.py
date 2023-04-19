@@ -3,8 +3,11 @@ from . import views
 
 from rest_framework import routers
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 router.register(r'women', views.WomenViewSet)
+
+for url in router.urls:
+    print(url)
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
