@@ -10,7 +10,7 @@ for url in router.urls:
     print(url)
 
 urlpatterns = [
-    path("api/v1/", include(router.urls)),
-    # path("api/v1/womenlist/", views.WomenViewSet.as_view({'get': 'list', 'post': 'create'})),
-    # path("api/v1/womenlist/<int:pk>/", views.WomenViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
+    path("", include(router.urls)),
+    # path("womenlist/", views.WomenViewSet.as_view({'get': 'list', 'post': 'create'})),
+    # path("womenlist/<int:pk>/", views.WomenViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
 ]
