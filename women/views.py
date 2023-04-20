@@ -1,10 +1,17 @@
 from rest_framework import generics, viewsets, permissions
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from .models import Women, Category
 from .serializer import WomenSerializer
 from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
+
+
+class WomenAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
 
 
 class WomenViewSet(viewsets.ModelViewSet):
