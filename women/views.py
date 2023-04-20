@@ -1,4 +1,4 @@
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -11,7 +11,17 @@ class WomenViewSet(viewsets.ModelViewSet):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
-    permission_classes = (IsAdminOrReadOnly | IsOwnerOrReadOnly)
+    # permission_classes = [IsAdminOrReadOnly]
+    def get_permissions(self):
+        if self.action == "list":
+            permission_classes = [IsAdminOrReadOnly]
+        elif self.action == 'create':
+            permission_classes = [permissions.IsAuthenticated]
+        elif self.action in ['retrieve', 'update', 'partial_update', 'destroy']:
+            permission_classes = [IsOwnerOrReadOnly]
+        else:
+            permission_classes = [permissions.IsAuthenticated]
+        return [permission() for permission in permission_classes]
 
     # def get_queryset(self):
     #     pk = self.kwargs.get("pk")
